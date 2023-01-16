@@ -44,3 +44,46 @@ x int, y int
 // becomes
 x, y int
 ```
+## Return Values
+
+Multiple return valu
+- Arbitrary number of values can be returned.
+
+```go
+package main
+
+import "fmt"
+
+func swap(x, y string) (string, string) {
+  return y, x
+}
+
+func main() {
+  a, b := swap("hello", "world")
+  fmt.Println(a, b)
+}
+```
+
+Named Return values
+- Return values can be named
+  - Treated as variables defined at top of function
+  - __USE__: document the meaning of return values
+- 'Naked return': `return` statement w/o args
+  - Returns named return values
+  - Best practice, use only w/ short functions
+
+```go
+package main
+
+import "fmt"
+
+func split(sum int) (x, y int) {
+  x = sum * 4 / 9
+  y = sum - x
+  return
+}
+
+func main() {
+  fmt.Println(split(32))
+}
+```
