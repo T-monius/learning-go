@@ -108,3 +108,114 @@ func main() {
   fmt.Printf("%v %v %v %q\n", i, f, b, s)
 }
 ```
+
+## Type conversions
+
+`T(v)`: expression that converts a value (`v`) to the type of `T`.
+
+Numeric conversions:
+```go
+var i int = 42
+var f float64 = float64(i)
+var u uint = uint(f)
+
+// simplified
+i := 42
+f := float(i)
+u := uint(f)
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "math"
+)
+
+func main() {
+  var x, y int = 3, 4
+  var f float64 = math.Sqrt(float64(x*x + y*y))
+  var z uint = uint(f)
+  fmt.Println(x, y, z)
+}
+```
+
+Go assignment between items of different types requires an explicit conversion
+- Unlike C
+- _Can be shown by removing type conversions in variable declarations in above example._
+
+## Type inference
+
+Variable's type can be inferred from the value on the right hand side of assignment.
+
+When the right hand side of the declaration is typed, the new variable is of the same type:
+
+```go
+var i int
+j := i // j is an int
+```
+
+When the right hand side contains an untyped numeric constant, the new variable may be an `int`, `float64`, or `complex128` depending on the precision of the constant.
+
+```go
+i := 42            // int
+f := 3.142         // float64
+g := 0.8567 + 0.5i //
+```
+
+## Constants
+
+Constants declared like variables but with the `const` keyword.
+- Character, string, boolean, or numeric values
+- Cannot be declared w/ short form (e.g. `:=`)
+
+```go
+package main
+
+import "fmt"
+
+const Pi = 3.14
+
+func main() {
+  const World = "世界"
+  fmt.Println("Hello", World)
+  fmt.Println("Happy", Pi, "Day")
+
+  const Truth = true
+  fmt.Println("Go rules?", Truth)
+}
+```
+
+## Numeric Constants
+
+High-precision values.
+
+An untyped constant takes the type needed by its context.
+
+```go
+package main
+
+import "fmt"
+
+const (
+  // Create a huge number by shifting a 1 bit left 100 places.
+  // In other words, the binary number that is 1 followed by 100 zeroes.
+  Big = 1 << 100
+  // Shift it right again 99 places, so we end up with 1<<1, or 2.
+  Small = Big >> 99
+)
+
+func needInt(x int) int { return x*10 + 1 }
+func needFloat(x float64) float64 {
+  return x * 0.1
+}
+
+func main() {
+  fmt.Println(needInt(Small))
+  fmt.Println(needFloat(Small))
+  fmt.Println(needFloat(Big))
+  // fmt.Println(needInt(Big))
+  // (An int can store at maximum a 64-bit integer, and sometimes less.)
+}
+```
