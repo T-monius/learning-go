@@ -146,3 +146,65 @@ func main() {
   )
 }
 ```
+
+## Switch Statement
+
+`switch`: shorter way of writing a sequence of `if - else` statements.
+- Runs the first case whose value is equal to the condition expression.
+
+Go only runs the selected case, not all the cases that follow.
+
+Switch cases need not be constants, and the values need not be integers.
+
+```go
+package main
+
+import (
+  "fmt"
+  "runtime"
+)
+
+func main() {
+  fmt.Print("Go runs on ")
+  switch os := runtime.GOOS; os {
+  case "darwin":
+    fmt.Println("OS X.")
+  case "linux":
+    fmt.Println("Linux.")
+  default:
+    // freebsd, openbsd,
+    // plan9, windows...
+    fmt.Printf("%s.\n", os)
+  }
+}
+```
+
+### Switch evaluation order
+
+Cases evaluate from top to bottom.
+
+### Switch with no condition
+
+Same as `switch true`
+- This construct can be a clean way to write long if-then-else chains.
+
+```go
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+  t := time.Now()
+  switch {
+  case t.Hour() < 12:
+    fmt.Println("Good morning!")
+  case t.Hour() < 17:
+    fmt.Println("Good afternoon.")
+  default:
+    fmt.Println("Good evening.")
+  }
+}
+```
