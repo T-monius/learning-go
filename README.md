@@ -11,3 +11,11 @@ To start:
 - [An Introduction to Programming in Go](http://www.golang-book.com/books/intro) book by Caleb Doxsey
 - [Go tooling](https://www.alexedwards.net/blog/an-overview-of-go-tooling)
 - [Master Go](https://appliedgo.com/p/mastergo)
+
+## To practice
+
+- [Go](https://exercism.io/tracks/go 'Go on Exercism') track on Exercism
+- [Gophercises](https://gophercises.com/)
+  - Free coding exercises w/ walkthroughs
+- Flaviocopes articles
+  - Covers a range of features of Go
