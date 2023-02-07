@@ -270,3 +270,113 @@ main.main()
   /tmp/sandbox3217719788/prog.go:17 +0x14a
 */
 ```
+
+## Type switches
+
+_Type switch_: permits several type assertions in series.
+- Like regular switch statement.
+- Cases specify types (not values)
+
+```go
+switch v := i.(type) {
+case T:
+    // here v has type T
+case S:
+    // here v has type S
+default:
+    // no match; here v has the same type as i
+}
+```
+
+```go
+package main
+
+import "fmt"
+
+func do(i interface{}) {
+  switch v := i.(type) {
+  case int:
+    fmt.Printf("Twice %v is %v\n", v, v*2)
+  case string:
+    fmt.Printf("%q is %v bytes long\n", v, len(v))
+  default:
+    fmt.Printf("I don't know about type %T!\n", v)
+  }
+}
+
+func main() {
+  do(21)
+  do("hello")
+  do(true)
+}
+```
+
+## Stringsers
+
+`Stringer`, defined by `fmt`
+- Ubiquitous interface
+
+```go
+type Stringer interface {
+  String() string
+}
+```
+
+Type that can describe itself as a string.
+- Looked for to print values.
+
+```go
+package main
+
+import "fmt"
+
+type Person struct {
+  Name string
+  Age  int
+}
+
+func (p Person) String() string {
+  return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func main() {
+  a := Person{"Arthur Dent", 42}
+  z := Person{"Zaphod Beeblebrox", 9001}
+  fmt.Println(a, z)
+}
+
+//=> Arthur Dent (42 years) Zaphod Beeblebrox (9001 years)
+```
+
+## Stringers Exercise
+
+Make the `IPAddr` type implement fmt.Stringer to print the address as a dotted quad.
+
+For instance, `IPAddr{1, 2, 3, 4}` should print as `"1.2.3.4"`.
+
+```go
+package main
+
+import "fmt"
+
+type IPAddr [4]byte
+
+// TODO: Add a "String() string" method to IPAddr.
+func (i IPAddr) String() string {
+  return fmt.Sprintf("%v.%v.%v.%v", i[0], i[1], i[2], i[3])
+}
+
+func main() {
+  hosts := map[string]IPAddr{
+    "loopback":  {127, 0, 0, 1},
+    "googleDNS": {8, 8, 8, 8},
+  }
+  for name, ip := range hosts {
+    fmt.Printf("%v: %v\n", name, ip)
+  }
+}
+
+/*
+=> loopback: 127.0.0.1
+googleDNS: 8.8.8.8 */
+```
