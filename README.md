@@ -8,6 +8,7 @@ To start:
 - ~~[Installation instructions](https://golang.org/doc/install)~~
 - [Tour of Go](https://tour.golang.org/list)
 - [Go by Example](https://gobyexample.com/)
+- [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 - [An Introduction to Programming in Go](http://www.golang-book.com/books/intro) book by Caleb Doxsey
 - [Go tooling](https://www.alexedwards.net/blog/an-overview-of-go-tooling)
 - [Master Go](https://appliedgo.com/p/mastergo)
