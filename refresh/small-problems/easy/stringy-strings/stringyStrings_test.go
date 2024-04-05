@@ -10,13 +10,7 @@ func TestStringyStrings(t *testing.T) {
 		got := StringyStrings(num)
 		want := ""
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
-
-		if len(want) != num {
-			t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
-		}
+		assertCorrectBinaryStr(t, num, got, want)
 	})
 
 	t.Run("test num: 6", func(t *testing.T) {
@@ -24,13 +18,7 @@ func TestStringyStrings(t *testing.T) {
 		got := StringyStrings(num)
 		want := "101010"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
-
-		if len(want) != num {
-			t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
-		}
+		assertCorrectBinaryStr(t, num, got, want)
 	})
 
 	t.Run("test num: 9", func(t *testing.T) {
@@ -38,13 +26,7 @@ func TestStringyStrings(t *testing.T) {
 		got := StringyStrings(num)
 		want := "101010101"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
-
-		if len(want) != num {
-			t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
-		}
+		assertCorrectBinaryStr(t, num, got, want)
 	})
 
 	t.Run("test num: 4", func(t *testing.T) {
@@ -52,13 +34,7 @@ func TestStringyStrings(t *testing.T) {
 		got := StringyStrings(num)
 		want := "1010"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
-
-		if len(want) != num {
-			t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
-		}
+		assertCorrectBinaryStr(t, num, got, want)
 	})
 
 	t.Run("test num: 7", func(t *testing.T) {
@@ -66,12 +42,18 @@ func TestStringyStrings(t *testing.T) {
 		got := StringyStrings(num)
 		want := "1010101"
 
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
-
-		if len(want) != num {
-			t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
-		}
+		assertCorrectBinaryStr(t, num, got, want)
 	})
+}
+
+func assertCorrectBinaryStr(t testing.TB, num int, got, want string) {
+	t.Helper()
+
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
+
+	if len(want) != num {
+		t.Errorf("Output an invalid string length. Want len: %d\n", len(want))
+	}
 }
