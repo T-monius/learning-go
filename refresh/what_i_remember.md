@@ -9,8 +9,10 @@
 
 ## Logging
 ```go
-[someLib].print()
-[someLib].printLn()
+import "fmt"
+
+fmt.print()
+fmt.printLn()
 ```
 General format string functionality
 
