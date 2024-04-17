@@ -1,8 +1,10 @@
-package blogposts
+package blogposts_test
 
 import (
 	"testing"
 	"testing/fstest"
+
+	blogposts "github.com/T-monius/learning-go/tree/main/learn-go-with-tests/reading-files/"
 )
 
 func TestNewBlogPosts(t *testing.T) {
